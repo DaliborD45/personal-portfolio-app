@@ -16,13 +16,12 @@ const ContactModal = ({ modalOpen, setModalOpen }: ContactModalProps) => {
     resolver: yupResolver(schema),
     defaultValues: {
       email: "",
-      password: "",
+      text: "",
     },
   })
   const onSubmitForm = methods.handleSubmit((form) => {
     console.log(form)
   })
-
 
   return (
     <>
@@ -39,19 +38,19 @@ const ContactModal = ({ modalOpen, setModalOpen }: ContactModalProps) => {
             <FormProvider {...methods}>
               <form onSubmit={onSubmitForm} data-testid="sign-in-form">
                 <Input
-                  label="E-mail"
+                  label=""
                   name="email"
                   type="text"
-                  placeholder="váš-email@underoof.sk"
+                  placeholder="your-email@gmail.sk"
                   err={methods.formState.errors.email?.message}
                   required
                 />
                 <Input
-                  label="Heslo"
+                  label=""
                   name="password"
-                  type="password"
-                  placeholder="Vaše heslo"
-                  err={methods.formState.errors.password?.message}
+                  type="text"
+                  placeholder="your-idea"
+                  err={methods.formState.errors.text?.message}
                   required
                 />
 

@@ -1,17 +1,21 @@
 import React from "react"
 import styled from "styled-components"
-import { Button } from "../../components/button/button.components"
+import { ButtonLink } from "../../components/button/button.components"
 import Heading from "../../components/heading/heading.components"
 import { useTheme } from "styled-components"
+import { useRouter } from "next/router"
 function Projects() {
   const theme = useTheme()
+  const router = useRouter()
   return (
     <Wrapper>
       <Parallax src="/assets/wineBg.jpg  ">
         <Heading variant="h2" color={theme.colors.red}>
-          What I have built ? 
+          What I have built ?
         </Heading>
-        <ViewButton>View</ViewButton>
+        <ViewButton href="https://bakusklub.sk/" target="_blank">
+          View
+        </ViewButton>
       </Parallax>
       {/* <Parallax src="/assets/reddit.png"></Parallax> */}
     </Wrapper>
@@ -38,6 +42,6 @@ const Parallax = styled.div<{ src: string }>`
   gap: 5rem;
   align-items: center;
 `
-const ViewButton = styled(Button)`
+const ViewButton = styled(ButtonLink)`
   margin-bottom: 5rem;
 `
