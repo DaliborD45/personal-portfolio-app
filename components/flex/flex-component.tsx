@@ -1,4 +1,3 @@
-import { motion } from "framer-motion"
 import React, { HTMLAttributes } from "react"
 import styled from "styled-components"
 type Props = {
@@ -51,7 +50,7 @@ const Flex = ({
   )
 }
 
-const StyledFlex = styled(motion.div)<{
+const StyledFlex = styled.div<{
   alignSelf?: AlignItems
   direction: Direction
   justifyContent: JustifyContent
