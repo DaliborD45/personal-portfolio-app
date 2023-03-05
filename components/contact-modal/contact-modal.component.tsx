@@ -11,16 +11,24 @@ import { IForm } from "./contact-modal.types"
 import { schema } from "./schema"
 import { Button } from "../button/button.components"
 import Input from "../input/input.component"
+import { sendContactForm } from "../../lib/api"
 const ContactModal = ({ modalOpen, setModalOpen }: ContactModalProps) => {
   const methods = useForm<IForm>({
     resolver: yupResolver(schema),
     defaultValues: {
       email: "",
-      text: "",
+      message: "",
     },
   })
-  const onSubmitForm = methods.handleSubmit((form) => {
+  const onSubmitForm = methods.handleSubmit(async (form) => {
     console.log(form)
+
+    try {
+      // const res = await sendContactForm(form)
+      console.log(form)
+    } catch (error) {
+      console.log(error)
+    }
   })
 
   return (
@@ -40,17 +48,17 @@ const ContactModal = ({ modalOpen, setModalOpen }: ContactModalProps) => {
                 <Input
                   label=""
                   name="email"
-                  type="text"
+                  type="email"
                   placeholder="your-email@gmail.sk"
                   err={methods.formState.errors.email?.message}
                   required
                 />
                 <Input
                   label=""
-                  name="password"
+                  name="message"
                   type="text"
                   placeholder="your-idea"
-                  err={methods.formState.errors.text?.message}
+                  err={methods.formState.errors.message?.message}
                   required
                 />
 

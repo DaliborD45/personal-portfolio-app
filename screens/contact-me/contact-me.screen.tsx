@@ -7,6 +7,7 @@ import PageContainer from "../../components/page-container/page-container.compon
 import Heading from "../../components/heading/heading.components"
 import { Button } from "../../components/button/button.components"
 import ContactModal from "../../components/contact-modal/contact-modal.component"
+import { motion } from "framer-motion"
 function ContactMe() {
   const [modalOpen, setModalOpen] = useState(false)
   const CONTACT_ME_DATA: Array<any> = [
@@ -15,23 +16,26 @@ function ContactMe() {
     { name: "message", type: "text", placeholder: "Share your thoughts" },
   ]
   const theme = useTheme()
-  const methods = useForm<IForm>({
-    // resolver: yupResolver(schema),
-    defaultValues: {
-      email: "",
-      message: "",
-      name: "",
-    },
-  })
 
+  const dataVariants = {
+    initial: { opacity: 0, y: 100 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+  }
   return (
     <Wrapper>
       <Container>
-        <Heading variant="h2" align="center" color="white">
-          Have Projects in Your Mind?
-          <br />
-          Lets Work Together
-        </Heading>
+        <motion.div
+          variants={dataVariants}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+        >
+          <Heading variant="h2" align="center" color="white">
+            Have Projects in Your Mind?
+            <br />
+            Lets Work Together
+          </Heading>
+        </motion.div>
         <Description>
           Contact me with your project idea and get full page product
         </Description>

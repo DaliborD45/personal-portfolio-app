@@ -14,7 +14,7 @@ export interface IProps {
 
 export interface IForm {
   email: string
-  text: string
+  message: string
 }
 
 export interface ILoginUserData {

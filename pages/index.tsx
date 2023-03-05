@@ -1,23 +1,31 @@
 import React from "react"
+import Footer from "../components/footer/footer.component"
 import ScrollComponent from "../components/scroll-component/scroll-component"
-import Technologies from "../components/technologies/technologies.component"
-import AboutMe from "../screens/about-me/about-me.component"
-import ContactMe from "../screens/contact-me/contact-me.screen"
 import Landing from "../screens/landing/landing.screen"
-import Projects from "../screens/projects/projects.screen"
-import WhyUs from "../screens/why-us/why-us.component"
+import Technologies from "../components/technologies/technologies.component"
+import dynamic from "next/dynamic"
+import { Suspense } from "react"
 
+const ContactMe = dynamic(
+  () => import("../screens/contact-me/contact-me.screen")
+)
+const AboutMe = dynamic(() => import("../screens/about-me/about-me.component"))
+const Projects = dynamic(() => import("../screens/projects/projects.screen"))
+const WhyUs = dynamic(() => import("../screens/why-us/why-us.component"), {
+  ssr: false,
+})
 function Main() {
   return (
-    <>
+    <Suspense fallback={"Loading..."}>
       <ScrollComponent />
       <Landing />
       <Technologies />
       <WhyUs />
       <Projects />
-      <AboutMe  />
+      <AboutMe />
       <ContactMe />
-    </>
+      {/* <Footer /> */}
+    </Suspense>
   )
 }
 

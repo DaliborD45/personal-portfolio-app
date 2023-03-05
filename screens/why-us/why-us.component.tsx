@@ -1,55 +1,37 @@
 import React from "react"
 import styled from "styled-components"
-import { AiOutlineDollarCircle } from "react-icons/ai"
-import { BsFillLightningFill } from "react-icons/bs"
-import { IoSettingsSharp } from "react-icons/io5"
-import { BiInfinite } from "react-icons/bi"
 import Heading from "../../components/heading/heading.components"
 import PageContainer from "../../components/page-container/page-container.component"
 import AdvantageCard from "../../components/advantage-card/advantage-card.component"
-import { title } from "process"
+import { WHY_US_CONFIG } from "../../config/why-us.config"
+import { motion } from "framer-motion"
 function WhyUs() {
-  const DATA = [
-    {
-      Icon: AiOutlineDollarCircle,
-      title: "Pricing",
-      description:
-        "You do not have to waste tons of money on a big corporate agencies. ",
-    },
-    {
-      Icon: BsFillLightningFill,
-      title: "Fast Response",
-      description:
-        "We will respond to your request within 24 hours. All your ideas and suggestions will be consulted immidiately.",
-    },
-    {
-      Icon: IoSettingsSharp,
-      title: "Latest Technologies",
-      description:
-        "Using the latest technologies and frameworks ensures the best performance and security of the website.",
-    },
-    {
-      Icon: BiInfinite,
-      title: "We hear your responds",
-      description:
-        "If you have any suggestions or ideas, we will be happy to hear them. Client satisfaction is our top priority.",
-    },
-  ]
+  const dataVariants = {
+    initial: { opacity: 0, y: 100 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  }
   return (
     <Wrapper>
       <Content>
         <Heading variant="h2" color="black" align="center">
-          What makes us different ?
+          {WHY_US_CONFIG.heading}
         </Heading>
         <DataContainer>
-          {DATA.map((item, index) => (
-            <AdvantageCard
+          {WHY_US_CONFIG.data.map((item, index) => (
+            <motion.div
               key={index}
-              title={item.title}
-              description={item.description}
-              Icon={item.Icon}
-              index={index}
-            />
+              variants={dataVariants}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            >
+              <AdvantageCard
+                title={item.title}
+                description={item.description}
+                Icon={item.Icon}
+                index={index}
+              />
+            </motion.div>
           ))}
         </DataContainer>
       </Content>
@@ -65,7 +47,7 @@ const Wrapper = styled.div`
   border-top-left-radius: 100% 50%;
   border-top-right-radius: 100% 50%;
 `
-const DataContainer = styled.div`
+const DataContainer = styled(motion.div)`
   margin-top: 10rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);

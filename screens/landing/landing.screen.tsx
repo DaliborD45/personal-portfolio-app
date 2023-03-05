@@ -21,7 +21,7 @@ const Landing = () => {
           <b style={{ color: theme.colors.primary }}>Develop </b>
           apps and websites without any limits
         </Heading>
-        <Description style={{ color: "black" }}>lorem ipsum </Description>
+        {/* <Description style={{ color: "black" }}>lorem ipsum </Description> */}
         <Button>Contact us</Button>
       </Content>
     </Wrapper>
@@ -40,6 +40,7 @@ const Wrapper = styled.div`
 const Content = styled(PageContainer)`
   display: flex;
   height: 100%;
+  gap: 10rem;
   justify-content: center;
   flex-direction: column;
   align-items: center;
